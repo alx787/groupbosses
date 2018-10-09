@@ -4,13 +4,15 @@
         <meta name="decorator" content="atl.admin"/>
         <meta name="admin.active.section" content="admin_plugins_menu/group-bosses-section"/>
     ##    $webResourceManager.requireResource("com.atlassian.auiplugin:aui-buttons")
-    ##    $webResourceManager.requireResource("com.atlassian.auiplugin:aui-select2")
+        $webResourceManager.requireResource("com.atlassian.auiplugin:aui-select2")
     ##    $webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:message")
         $webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-experimental-iconfont")
         $webResourceManager.requireResourcesForContext("groupbosses")
     </head>
 
     <body class="aui">
+
+
         <div id="aui-message-bar"></div>
 
         <section id="demo-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" role="dialog" aria-hidden="true">
@@ -26,7 +28,13 @@
                 <form class="aui">
                     <div class="field-group">
                         <label for="podr-field">Подразделение</label>
-                        <input id="podr-field" type="hidden" class="user_select" style="width: 200px;"></input>
+                        <select id="podr-field">
+                            #foreach($group in $allGroups)
+                                <option value="$group.getName()">$group.getName()</option>
+                            #end
+                        </select>
+
+##                        <input id="podr-field" type="hidden" class="user_select" style="width: 200px;"></input>
                     </div>
 
                     <div class="field-group">
