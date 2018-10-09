@@ -28,4 +28,15 @@
       </action>
     </actions>
   </webwork1>
+  <web-section name="group-bosses-section" i18n-name-key="group-bosses-section.name" key="group-bosses-section" location="admin_plugins_menu" weight="1000">
+    <description key="group-bosses-section.description">The group-bosses-section Plugin</description>
+    <!--<label key="group-bosses-section.label"/>-->
+    <label key="Настройка руководителей подразделений"/>
+  </web-section>
+  <web-item name="group-bosses-link" i18n-name-key="groupbosseslink.name" key="groupbosseslink" section="admin_plugins_menu/group-bosses-section" weight="1000">
+    <description key="groupbosseslink.description">The group bosses link Plugin</description>
+    <!--<label key="groupbosseslink.label"></label>-->
+    <label key="Руководители подразделений"></label>
+    <link linkId="groupbosseslink-link">/secure/GroupBossesSettingsAction!default.jspa</link>
+  </web-item>
 </atlassian-plugin>

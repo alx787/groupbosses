@@ -1,1 +1,93 @@
-<h1>success.vm</h1>
+/home/alex/devel/webwork/src/main/resources/templates/webwork-config/configwebwork/success.vm                                                                                                                       1463/7654               19%
+<html>
+    <head>
+        <meta name="decorator" content="atl.admin"/>
+        <meta name="admin.active.section" content="admin_plugins_menu/group-bosses-section"/>
+    ##    $webResourceManager.requireResource("com.atlassian.auiplugin:aui-buttons")
+    ##    $webResourceManager.requireResource("com.atlassian.auiplugin:aui-select2")
+    ##    $webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:message")
+        $webResourceManager.requireResourcesForContext("com.atlassian.auiplugin:aui-experimental-iconfont")
+        $webResourceManager.requireResourcesForContext("groupbosses")
+    </head>
+
+    <body class="aui">
+        <div id="aui-message-bar"></div>
+
+        <section id="demo-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" role="dialog" aria-hidden="true">
+            <header class="aui-dialog2-header">
+                <h2 class="aui-dialog2-header-main">Добавить руководителя подразделения</h2>
+                <a class="aui-dialog2-header-close">
+                    <span class="aui-icon aui-icon-small aui-iconfont-close-dialog">Close</span>
+                </a>
+            </header>
+
+            <div class="aui-dialog2-content">
+
+                <form class="aui">
+                    <div class="field-group">
+                        <label for="podr-field">Подразделение</label>
+                        <input id="podr-field" type="hidden" class="user_select" style="width: 200px;"></input>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="boss-field">Руководитель</label>
+                        <input id="boss-field" type="hidden" class="user_select" style="width: 200px;"></input>
+                    </div>
+                </form>
+
+            </div>
+
+            <footer class="aui-dialog2-footer">
+                <div class="aui-dialog2-footer-actions">
+                    <button id="dialog-submit-button" class="aui-button aui-button-primary">Добавить</button>
+                </div>
+            </footer>
+        </section>
+
+
+
+        <button id="dialog-show-button" class="aui-button aui-button-primary">Добавить строку</button>
+
+
+
+        <table class="aui">
+            <thead>
+                <tr>
+                    <th>Подразделение</th>
+                    <th>Руководитель</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Default</td>
+                <td>Internal Directory</td>
+                <td>
+                    <button class="aui-button">Редактировать</button>
+                </td>
+                <td>
+                    <button class="aui-button">Удалить</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Corporate LDAP</td>
+                <td>Microsoft Active Directory</td>
+                <td>
+                    <button class="aui-button">Редактировать</button>
+                </td>
+                <td>
+                    <button class="aui-button">Удалить</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+    </body>
+</html>

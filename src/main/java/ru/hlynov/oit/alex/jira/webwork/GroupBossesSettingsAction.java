@@ -11,6 +11,7 @@ public class GroupBossesSettingsAction extends JiraWebActionSupport
     @Override
     public String execute() throws Exception {
 
-        return super.execute(); //returns SUCCESS
+        super.execute(); //returns SUCCESS
+        return SUCCESS;
     }
 }
