@@ -12,8 +12,8 @@
 
     <body class="aui">
 
-
         <div id="aui-message-bar"></div>
+
 
         <section id="demo-dialog" class="aui-dialog2 aui-dialog2-medium aui-layer" role="dialog" aria-hidden="true">
             <header class="aui-dialog2-header">
@@ -26,6 +26,14 @@
             <div class="aui-dialog2-content">
 
                 <form class="aui">
+
+##                    тут переменные для передачи параметров тип запроса (редактирование или добавление) и номер записи
+                    <input type="hidden" name="typezapros" value="">
+                    <input type="hidden" name="numberid" value="">
+                    <input type="hidden" name="groupname" value="">
+                    <input type="hidden" name="username" value="">
+                    <input type="hidden" name="userdisplayname" value="">
+
                     <div class="field-group">
                         <label for="podr-field">Подразделение</label>
                         <select id="podr-field">
@@ -47,7 +55,8 @@
 
             <footer class="aui-dialog2-footer">
                 <div class="aui-dialog2-footer-actions">
-                    <button id="dialog-submit-button" class="aui-button aui-button-primary">Добавить</button>
+                    <button id="dialog-submit-button" class="aui-button aui-button-primary">ОК</button>
+                    <button id="dialog-cancel-button" class="aui-button">Отмена</button>
                 </div>
             </footer>
         </section>
@@ -58,7 +67,7 @@
 
 
 
-        <table class="aui">
+        <table id="bosses-table" class="aui">
             <thead>
                 <tr>
                     <th>Подразделение</th>
@@ -69,23 +78,36 @@
             </thead>
             <tbody>
             <tr>
-                <td>Default</td>
-                <td>Internal Directory</td>
                 <td>
-                    <button class="aui-button">Редактировать</button>
+                    <span class="groupname">jira-administrators</span>
+                    <input type="hidden" name="numberid" value="1">
                 </td>
                 <td>
-                    <button class="aui-button">Удалить</button>
+                    <span class="boss">admin</span>
+                    <input type="hidden" name="username" value="admin">
+                </td>
+                <td>
+                    <button class="aui-button doedit">Редактировать</button>
+                </td>
+                <td>
+                    <button class="aui-button dodelete">Удалить</button>
                 </td>
             </tr>
             <tr>
-                <td>Corporate LDAP</td>
-                <td>Microsoft Active Directory</td>
                 <td>
-                    <button class="aui-button">Редактировать</button>
+                    <span class="groupname">Дополнительная группа</span>
+                    <input type="hidden" name="numberid" value="2">
                 </td>
                 <td>
-                    <button class="aui-button">Удалить</button>
+                    <span class="boss">Пользователь 1</span>
+                    <input type="hidden" name="username" value="user1">
+                </td>
+
+                <td>
+                    <button class="aui-button doedit">Редактировать</button>
+                </td>
+                <td>
+                    <button class="aui-button dodelete">Удалить</button>
                 </td>
             </tr>
             </tbody>
