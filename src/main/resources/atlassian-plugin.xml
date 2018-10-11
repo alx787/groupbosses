@@ -15,6 +15,7 @@
     <dependency>com.atlassian.auiplugin:ajs</dependency>
     <resource type="download" name="groupbosses.css" location="/css/groupbosses.css"/>
     <resource type="download" name="groupbosses.js" location="/js/groupbosses.js"/>
+    <resource type="download" name="debug.js" location="/js/debug.js"/>
     <resource type="download" name="images/" location="/images"/>
     <context>groupbosses</context>
   </web-resource>
@@ -39,4 +40,9 @@
     <label key="Руководители подразделений"></label>
     <link linkId="groupbosseslink-link">/secure/GroupBossesSettingsAction!default.jspa</link>
   </web-item>
+
+  <ao key="ao-module">
+    <description>The AO module for this plugin.</description>
+    <entity>ru.hlynov.oit.alex.entity.GroupBossesEntity</entity>
+  </ao>
 </atlassian-plugin>
