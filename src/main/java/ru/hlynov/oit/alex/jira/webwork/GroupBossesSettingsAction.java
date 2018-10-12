@@ -44,8 +44,11 @@ public class GroupBossesSettingsAction extends JiraWebActionSupport
 //        String bossName = request.getParameterValues("bossname")[0];
 //        String goupName = request.getParameterValues("groupname")[0];
 
-        String bossName = request.getParameter("bossname");
-        String groupName = request.getParameter("groupname");
+//        String bossName = request.getParameter("bossname");
+//        String groupName = request.getParameter("groupname");
+
+        String bossName = getHttpRequest().getParameter("bossname");
+        String groupName = getHttpRequest().getParameter("groupname");
 
         log.warn(" ======= bossname:" + bossName);
         log.warn(" ======= groupname:" + groupName);
@@ -54,6 +57,7 @@ public class GroupBossesSettingsAction extends JiraWebActionSupport
 
         Integer newID = groupBossesDAO.addGroupBosses(groupBosses);
 
+        //getHttpResponse().getWriter()
 
         return NONE;
     }
