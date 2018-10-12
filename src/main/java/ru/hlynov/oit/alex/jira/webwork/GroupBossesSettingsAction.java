@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.atlassian.jira.web.action.JiraWebActionSupport;
 import ru.hlynov.oit.alex.dao.GroupBossesDAO;
 import ru.hlynov.oit.alex.entity.GroupBosses;
+import ru.hlynov.oit.alex.entity.GroupBossesEntity;
 import ru.hlynov.oit.alex.impl.GroupBossesDAOImpl;
 
 import java.util.List;
@@ -41,23 +42,16 @@ public class GroupBossesSettingsAction extends JiraWebActionSupport
     }
 
     public String doAdd() throws Exception {
-//        String bossName = request.getParameterValues("bossname")[0];
-//        String goupName = request.getParameterValues("groupname")[0];
-
-//        String bossName = request.getParameter("bossname");
-//        String groupName = request.getParameter("groupname");
 
         String bossName = getHttpRequest().getParameter("bossname");
         String groupName = getHttpRequest().getParameter("groupname");
 
-        log.warn(" ======= bossname:" + bossName);
-        log.warn(" ======= groupname:" + groupName);
+//        log.warn(" ======= bossname:" + bossName);
+//        log.warn(" ======= groupname:" + groupName);
 
         GroupBosses groupBosses = new GroupBosses(groupName, bossName);
 
-        Integer newID = groupBossesDAO.addGroupBosses(groupBosses);
-
-        //getHttpResponse().getWriter()
+        GroupBossesEntity groupBossesEntity = groupBossesDAO.addGroupBosses(groupBosses);
 
         return NONE;
     }

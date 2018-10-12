@@ -1,6 +1,7 @@
 package ru.hlynov.oit.alex.impl;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
+import com.atlassian.activeobjects.tx.Transactional;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import net.java.ao.DBParam;
@@ -14,6 +15,7 @@ import javax.inject.Named;
 import java.util.Arrays;
 import java.util.List;
 
+@Transactional
 @Named
 public class GroupBossesDAOImpl implements GroupBossesDAO {
 
@@ -44,47 +46,64 @@ public class GroupBossesDAOImpl implements GroupBossesDAO {
     @Override
     public void updateGroupBosses(long id, GroupBosses groupBosses) {
 
-        ao.executeInTransaction(new TransactionCallback<GroupBossesEntity>() {
-            @Override
-            public GroupBossesEntity doInTransaction() {
-                GroupBossesEntity grEntity = ao.find(GroupBossesEntity.class, Query.select().where("ID=?", id))[0];
-                grEntity.setBossName(groupBosses.getBossName());
-                grEntity.setGroupName(groupBosses.getGroupName());
-                grEntity.save();
-                return null;
-            }
-        });
+//        ao.executeInTransaction(new TransactionCallback<GroupBossesEntity>() {
+//            @Override
+//            public GroupBossesEntity doInTransaction() {
+//                GroupBossesEntity grEntity = ao.find(GroupBossesEntity.class, Query.select().where("ID=?", id))[0];
+//                grEntity.setBossName(groupBosses.getBossName());
+//                grEntity.setGroupName(groupBosses.getGroupName());
+//                grEntity.save();
+//                return null;
+//            }
+//        });
+
+        GroupBossesEntity grEntity = ao.find(GroupBossesEntity.class, Query.select().where("ID=?", id))[0];
+        grEntity.setBossName(groupBosses.getBossName());
+        grEntity.setGroupName(groupBosses.getGroupName());
+        grEntity.save();
+
 
     }
 
     @Override
     public void deleteGroupBosses(long id) {
-        ao.executeInTransaction(new TransactionCallback<GroupBossesEntity>() {
-            @Override
-            public GroupBossesEntity doInTransaction() {
-                GroupBossesEntity grEntity = ao.find(GroupBossesEntity.class, Query.select().where("ID=?", id))[0];
-                ao.delete(grEntity);
-                return null;
-            }
-        });
+//        ao.executeInTransaction(new TransactionCallback<GroupBossesEntity>() {
+//            @Override
+//            public GroupBossesEntity doInTransaction() {
+//                GroupBossesEntity grEntity = ao.find(GroupBossesEntity.class, Query.select().where("ID=?", id))[0];
+//                ao.delete(grEntity);
+//                return null;
+//            }
+//        });
+
+        GroupBossesEntity grEntity = ao.find(GroupBossesEntity.class, Query.select().where("ID=?", id))[0];
+        ao.delete(grEntity);
 
     }
 
     @Override
-    public Integer addGroupBosses(GroupBosses groupBosses) {
+    public GroupBossesEntity addGroupBosses(GroupBosses groupBosses) {
 
-        return ao.executeInTransaction(new TransactionCallback<Integer>(){
-            @Override
-            public Integer doInTransaction() {
-                GroupBossesEntity newGrEntity = ao.create(GroupBossesEntity.class, new DBParam("GROUPNAME", groupBosses.getGroupName()), new DBParam("BOSSNAME", groupBosses.getBossName()));
+//        return ao.executeInTransaction(new TransactionCallback<Integer>(){
+//            @Override
+//            public Integer doInTransaction() {
+//                final GroupBossesEntity newGrEntity = ao.create(GroupBossesEntity.class, new DBParam("GROUPNAME", groupBosses.getGroupName()), new DBParam("BOSSNAME", groupBosses.getBossName()));
+//                newGrEntity.save();
+//
+//                return new Integer(newGrEntity.getID());
+//            }
+//        });
 
-//                newGrEntity.setGroupName(groupBosses.getGroupName());
-//                newGrEntity.setBossName(groupBosses.getBossName());
+        final GroupBossesEntity newGrEntity = ao.create(GroupBossesEntity.class, new DBParam("GROUPNAME", groupBosses.getGroupName()), new DBParam("BOSSNAME", groupBosses.getBossName()));
+//        newGrEntity.setGroupName(groupBosses.getGroupName());
+//        newGrEntity.setBossName(groupBosses.getBossName());
 
-                newGrEntity.save();
 
-                return newGrEntity.getID();
-            }
-        });
+
+        newGrEntity.save();
+
+        //return new Integer(newGrEntity.getID());
+        return newGrEntity;
+
     }
 }

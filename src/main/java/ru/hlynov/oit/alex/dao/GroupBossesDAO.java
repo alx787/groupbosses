@@ -10,5 +10,5 @@ public interface GroupBossesDAO {
     public GroupBossesEntity getGroupBosses(long id);
     public void updateGroupBosses(long id, GroupBosses groupBosses);
     public void deleteGroupBosses(long id);
-    public Integer addGroupBosses(GroupBosses groupBosses);
+    public GroupBossesEntity addGroupBosses(GroupBosses groupBosses);
 }

@@ -70,6 +70,8 @@
 
 ##        удалить
         <button id="test-ajax" class="aui-button aui-button-primary">test</button>
+        ##        удалить
+        <button id="test-ajax-rest" class="aui-button aui-button-primary">test rest</button>
 
 
         <table id="bosses-table" class="aui">

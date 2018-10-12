@@ -45,4 +45,8 @@
     <description>The AO module for this plugin.</description>
     <entity>ru.hlynov.oit.alex.entity.GroupBossesEntity</entity>
   </ao>
+
+    <rest name="Group Bosses" i18n-name-key="group-bosses-rest.name" key="group-bosses" path="/groupbosses" version="1.0">
+        <description key="group-bosses-rest.description">Group Bosses rest plugin</description>
+    </rest>
 </atlassian-plugin>
