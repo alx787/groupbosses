@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface GroupBossesDAO {
     public List<GroupBosses> getAllGroupBosses();
-    public GroupBosses getGroupBosses(long id);
-    public void updateGroupBosses(long id, GroupBosses groupBosses);
-    public void deleteGroupBosses(long id);
+    public GroupBosses getGroupBosses(int id);
+    public void updateGroupBosses(int id, GroupBosses groupBosses);
+    public void deleteGroupBosses(int id);
     public GroupBosses addGroupBosses(GroupBosses groupBosses);
 }

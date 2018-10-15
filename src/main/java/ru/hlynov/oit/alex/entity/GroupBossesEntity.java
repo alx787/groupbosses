@@ -16,11 +16,11 @@ public interface GroupBossesEntity extends Entity {
     @NotNull
     public void setGroupName(String groupName);
 
-    @Accessor("Bossname")
+    @Accessor("Username")
     @NotNull
-    public String getBossName();
+    public String getUserName();
 
-    @Mutator("Bossname")
+    @Mutator("Username")
     @NotNull
-    public void setBossName(String bossName);
+    public void setUserName(String userName);
 }

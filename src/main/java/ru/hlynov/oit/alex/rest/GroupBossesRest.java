@@ -54,6 +54,36 @@ public class GroupBossesRest {
     }
 
 
+    @PUT
+    @Path("/{id}")
+    public Response updateGroupBosses(@PathParam("id") String idStr, String JSONRequest) throws Exception {
+        int id = Integer.parseInt(idStr);
+
+        JsonParser jsonParser = new JsonParser();
+        JsonObject json = jsonParser.parse(JSONRequest).getAsJsonObject();
+
+
+        String groupname = json.get("groupname").getAsString();
+        String username = json.get("username").getAsString();
+
+//        log.warn("====== id        " + idStr);
+//        log.warn("====== groupname " + groupname);
+//        log.warn("====== username  " + username);
+
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+
+        groupBossesDAO.updateGroupBosses(id, new GroupBosses(groupname, username, username));
+
+//        jsonObject.addProperty("id", groupBosses.getId());
+//        jsonObject.addProperty("groupname", groupBosses.getGroupName());
+//        jsonObject.addProperty("username", groupBosses.getUserName());
+//        jsonObject.addProperty("userdisplayname", groupBosses.getUserDisplayName());
+
+        return Response.ok(gson.toJson(jsonObject)).build();
+    }
+
+
     // смотри тут если что
     // https://comsysto.github.io/kitchen-duty-plugin-for-atlassian-jira/tutorial/06-step-03-planning-page--user-search-js-controller/
     @POST
@@ -65,18 +95,17 @@ public class GroupBossesRest {
 
         JsonParser jsonParser = new JsonParser();
         JsonObject json = jsonParser.parse(JSONRequest).getAsJsonObject();
-//
+
         String groupname = json.get("groupname").getAsString();
-        String bossname = json.get("bossname").getAsString();
+        String username = json.get("username").getAsString();
 
-//        log.warn("==== groupname " + groupname);
-//        log.warn("==== bossname " + bossname);
+//        log.warn("====== groupname " + groupname);
+//        log.warn("====== username " + username);
 //
-
         Gson gson = new Gson();
         JsonObject jsonObject = new JsonObject();
 
-        GroupBosses groupBosses = groupBossesDAO.addGroupBosses(new GroupBosses(groupname, bossname, bossname));
+        GroupBosses groupBosses = groupBossesDAO.addGroupBosses(new GroupBosses(groupname, username, username));
 
         jsonObject.addProperty("id", groupBosses.getId());
         jsonObject.addProperty("groupname", groupBosses.getGroupName());
@@ -84,8 +113,20 @@ public class GroupBossesRest {
         jsonObject.addProperty("userdisplayname", groupBosses.getUserDisplayName());
 
         return Response.ok(gson.toJson(jsonObject)).build();
+    }
 
+    @DELETE
+    @Path("/{id}")
+    public Response delGroupBosses(@PathParam("id") String idStr) throws Exception {
 
+        log.warn(idStr);
+
+        int id = Integer.parseInt(idStr);
+        groupBossesDAO.deleteGroupBosses(id);
+
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+        return Response.ok(gson.toJson(jsonObject)).build();
     }
 
 

@@ -96,7 +96,27 @@ AJS.$(function() {
     // удаление строки
     AJS.$("#bosses-table tbody tr .dodelete").each(function(index, value) {
         AJS.$(this).click(function(e) {
-            AJS.$(this).parent().parent().remove();
+
+            var element = this;
+
+            AJS.$.ajax({
+                url:    AJS.params.baseURL + "/rest/groupbosses/1.0/groupbosses/" + AJS.$(this).parent().parent().find("td input[name='numberid'][type='hidden']").val(),
+                type: 'DELETE',
+                success: function(result) {
+                    // удалим строку
+                    // console.log("=============");
+                    // console.log(AJS.$(element).parent().parent());
+                    AJS.$(element).parent().parent().remove();
+                },
+                error: function(e) {
+                    // Do something with the result
+                    AJS.messages.error("#aui-message-bar", {
+                        title: 'Ошибка',
+                        body: e
+                    });
+                }
+            });
+
         });
     });
 });
@@ -259,6 +279,31 @@ function submitDialog() {
         htmlRowObj.find("input[name='username'][type='hidden']").val(newusername);
 
 
+        var errRetval = {error:false, errorText: ""};
+
+        AJS.$.ajax({
+            url: AJS.params.baseURL + "/rest/groupbosses/1.0/groupbosses/add",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify( { username: newusername, groupname: newgroupname } ),
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                // console.log(data);
+                htmlRowObj.find("td input[name='numberid'][type='hidden']").val(data.id);
+            },
+            error: function(e) {
+                // console.log("error");
+                errRetval.error = true;
+                errRetval.errorText = e;
+            },
+
+        });
+
+        if (errRetval.error === true) {
+            return errRetval;
+        }
+
+
     } else {
         //////////////////////////////////////////////////
         // редактируем текущую
@@ -280,6 +325,33 @@ function submitDialog() {
         parentRow.find("span.groupname").text(newgroupname);
         parentRow.find("span.boss").text(newuserdisplayname);
         parentRow.find("input[name='username'][type='hidden']").val(newusername);
+
+
+        var errRetval = {error:false, errorText: ""};
+
+        AJS.$.ajax({
+            url: AJS.params.baseURL + "/rest/groupbosses/1.0/groupbosses/" + numberid,
+            type: "put",
+            dataType: "json",
+            data: JSON.stringify( { username: newusername, groupname: newgroupname } ),
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(e) {
+                console.log("error");
+                errRetval.error = true;
+                errRetval.errorText = e;
+            },
+
+        });
+
+        if (errRetval.error === true) {
+            return errRetval;
+        }
+
+
+
     }
 
 
