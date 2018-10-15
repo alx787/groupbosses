@@ -117,6 +117,28 @@
                     <button class="aui-button dodelete">Удалить</button>
                 </td>
             </tr>
+
+            #foreach($oneGrBosses in $allGrBosses)
+                <tr>
+                    <td>
+                        <span class="groupname">$oneGrBosses.getGroupName()</span>
+                        <input type="hidden" name="numberid" value="$oneGrBosses.getId()">
+                    </td>
+                    <td>
+                        <span class="boss">$oneGrBosses.getUserDisplayName()</span>
+                        <input type="hidden" name="username" value="$oneGrBosses.getUserName()">
+                    </td>
+
+                    <td>
+                        <button class="aui-button doedit">Редактировать</button>
+                    </td>
+                    <td>
+                        <button class="aui-button dodelete">Удалить</button>
+                    </td>
+                </tr>
+            #end
+
+
             </tbody>
         </table>
 

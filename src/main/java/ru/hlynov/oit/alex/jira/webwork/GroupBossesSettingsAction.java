@@ -22,6 +22,7 @@ public class GroupBossesSettingsAction extends JiraWebActionSupport
 
     // все доступные группы
     private List<Group> allGroups;
+    private List<GroupBosses> allGrBosses;
 
     public GroupBossesSettingsAction(GroupBossesDAO groupBossesDAO) {
         this.groupBossesDAO = groupBossesDAO;
@@ -41,18 +42,9 @@ public class GroupBossesSettingsAction extends JiraWebActionSupport
         return groupList;
     }
 
-    public String doAdd() throws Exception {
-
-        String bossName = getHttpRequest().getParameter("bossname");
-        String groupName = getHttpRequest().getParameter("groupname");
-
-//        log.warn(" ======= bossname:" + bossName);
-//        log.warn(" ======= groupname:" + groupName);
-
-        GroupBosses groupBosses = new GroupBosses(groupName, bossName);
-
-        GroupBossesEntity groupBossesEntity = groupBossesDAO.addGroupBosses(groupBosses);
-
-        return NONE;
+    public List<GroupBosses> getAllGrBosses() {
+        return groupBossesDAO.getAllGroupBosses();
     }
+
+
 }
