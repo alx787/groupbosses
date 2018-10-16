@@ -121,4 +121,13 @@ public class GroupBossesDAOImpl implements GroupBossesDAO {
         GroupBosses newGrBosses = new GroupBosses(newGrEntity.getID(), newGrEntity.getGroupName(), newGrEntity.getUserName(), username);
         return newGrBosses;
     }
+
+    @Override
+    public String getBossNameByGroupName(String groupName) {
+        GroupBossesEntity[] grEntityArr = ao.find(GroupBossesEntity.class, Query.select().where("GROUPNAME=?", groupName));
+        if (grEntityArr.length >= 1) {
+            return grEntityArr[0].getUserName();
+        }
+        return null;
+    }
 }

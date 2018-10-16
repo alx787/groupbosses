@@ -11,4 +11,5 @@ public interface GroupBossesDAO {
     public void updateGroupBosses(int id, GroupBosses groupBosses);
     public void deleteGroupBosses(int id);
     public GroupBosses addGroupBosses(GroupBosses groupBosses);
+    public String getBossNameByGroupName(String groupName);
 }
