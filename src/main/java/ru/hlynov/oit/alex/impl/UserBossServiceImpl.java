@@ -12,8 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.SortedSet;
 
-@ExportAsService ({UserBossService.class})
-@Named ("userBossByUserName")
+//@ExportAsService({UserBossService.class})
+//@Named("userBossByUserName")
+@ExportAsService
+@Named
 public class UserBossServiceImpl implements UserBossService
 {
 //    @ComponentImport
