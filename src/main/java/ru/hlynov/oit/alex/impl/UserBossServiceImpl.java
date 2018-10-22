@@ -5,6 +5,9 @@ import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.user.util.UserUtil;
 import com.atlassian.plugin.spring.scanner.annotation.export.ExportAsService;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
+//import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.hlynov.oit.alex.api.UserBossService;
 import ru.hlynov.oit.alex.dao.GroupBossesDAO;
 
@@ -14,12 +17,17 @@ import java.util.SortedSet;
 
 //@ExportAsService({UserBossService.class})
 //@Named("userBossByUserName")
-@ExportAsService
-@Named
+//@ExportAsService
+//@Named
+//@Component
+@ExportAsService({UserBossService.class})
+@Named("userBossService")
 public class UserBossServiceImpl implements UserBossService
 {
 //    @ComponentImport
 //    private final ApplicationProperties applicationProperties;
+
+    private static final Logger log = LoggerFactory.getLogger(GroupBossesDAOImpl.class);
 
     private final GroupBossesDAO groupBossesDAO;
 
@@ -41,6 +49,11 @@ public class UserBossServiceImpl implements UserBossService
             }
         }
         return "";
+    }
+
+    @Override
+    public void sayInLog() {
+        log.warn("====================== imported ======================");
     }
 
 //    @Inject
